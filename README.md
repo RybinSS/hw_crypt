@@ -18,24 +18,24 @@
 ### Задание 2
 
 1. Установите поддержку LUKS.
-"sudo apt-get install cryptsetup"  
+sudo apt-get install cryptsetup  
 3. Создайте небольшой раздел, например, 100 Мб.
 "через gparted"
 5. Зашифруйте созданный раздел с помощью LUKS.
   Подготовка раздела (luksFormat):  
-"user@user:~$ sudo cryptsetup -y -v --type luks2 luksFormat /dev/sdb1"  
+sudo cryptsetup -y -v --type luks2 luksFormat /dev/sdb1  
   Монтирование раздела:  
-"user@user:~$ sudo cryptsetup luksOpen /dev/sdb1 disk"  
-"user@user:~$ ls /dev/mapper/disk"  
+sudo cryptsetup luksOpen /dev/sdb1 disk  
+ls /dev/mapper/disk  
   Форматирование раздела:  
-"user@user:~$ sudo dd if=/dev/zero of=/dev/mapper/disk"   
-"user@user:~$ sudo mkfs.ext4 /dev/mapper/disk"  
+sudo dd if=/dev/zero of=/dev/mapper/disk   
+sudo mkfs.ext4 /dev/mapper/disk  
    Монтирование «открытого» раздела:  
-"user@user:~$ mkdir .secret"  
-"user@user:~$ sudo mount /dev/mapper/disk .secret/"  
+mkdir .secret  
+sudo mount /dev/mapper/disk .secret/  
   Завершение работы:  
-"user@user:~$ sudo umount .secret"  
-"user@user:~$ sudo cryptsetup luksClose disk"  
+sudo umount .secret  
+sudo cryptsetup luksClose disk  
    
 <img src = "img/luks.png" width = 100%>  
 <img src = "img/luks2.png" width = 100%>  
